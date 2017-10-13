@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * Create config.properties file in the same dir with the following lines:
  * user=bdas_admin
- * password=bdas88!Arr
+ * password=
  */
 
 public class AddPrj {
