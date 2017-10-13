@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * Create config.properties file in the same dir with the following lines:
  * user=bdas_admin
- * password=
+ * password=bdas88!Arr
  */
 
 public class AddPrj {
@@ -115,7 +115,7 @@ public class AddPrj {
     }
 
     private static void add(List<String> urls, List<String> groups) throws IOException {
-        //int countAddedGroups = 0;
+        int countAddedGroups = 0;
         for (String jiraUrl : urls) {
             URL url = new URL(jiraUrl);
             HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
@@ -126,18 +126,17 @@ public class AddPrj {
             OutputStreamWriter out = new OutputStreamWriter(httpCon.getOutputStream());
 
             //adds special user. Uncomment if required.
-            /*
-            if (countAddedGroups == 6) {
-                out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"], \"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            //
+            //if (countAddedGroups == 6) {
+                //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"], \"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
                 //out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
                 //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"]}}");
-            }
-            else {
+            //}
+           // else {
                 out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
-            }
-            countAddedGroups++;
 
-            */
+           // }
+            countAddedGroups++;
             out.close();
             httpCon.getInputStream();
         }
