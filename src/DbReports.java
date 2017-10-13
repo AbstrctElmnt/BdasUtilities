@@ -25,15 +25,15 @@ import java.util.Properties;
  Check if JAVA variable is set in your system. If no, set it.  Copy oracle driver to your JAVA virtual machine. Note: if you have JDK installed (JDK package has its own JRE) and JRE that is installed separately, copy driver to both virtual machines (to /lib/ext/ folders).
 
  Usage:
- java dbReports jm it //JIRA MSQ - Issue Types.
- java dbReports jm ws //JIRA MSQ - Workflow Statuses.
- java dbReports jm cf //JIRA MSQ - Custom fields.
+ java DbReports jm it //JIRA MSQ - Issue Types.
+ java DbReports jm ws //JIRA MSQ - Workflow Statuses.
+ java DbReports jm cf //JIRA MSQ - Custom fields.
  je - JIRA EU
  jp - JIRA PCT
 
  */
 
-public class dbReports {
+public class DbReports {
     private static String userProd;
     private static String passwordProd;
     private static String p1;
@@ -55,7 +55,7 @@ public class dbReports {
     private static void loadProperties(){
         Properties prop = new Properties();
         String filename = "config.properties";
-        InputStream input = dbReports.class.getClassLoader().getResourceAsStream(filename);
+        InputStream input = DbReports.class.getClassLoader().getResourceAsStream(filename);
         if (input == null) {
             try {
                 throw new FileNotFoundException();
@@ -199,7 +199,7 @@ public class dbReports {
     private static String fileOut(String filename) {
         Path path = null;
         try {
-            path = Paths.get(dbReports.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+            path = Paths.get(DbReports.class.getProtectionDomain().getCodeSource().getLocation().toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
