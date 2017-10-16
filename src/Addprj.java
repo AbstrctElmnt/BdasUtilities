@@ -14,14 +14,15 @@ import java.util.Scanner;
  * Use this script only for newly created projects. Due to the bug in JIRA it was not possible to use api methods for updating roles, only override them.
  *
  * Create config.properties file in the same dir with the following lines:
- * user=bdas_admin
+ * user=bdas_adminD
  * password=
+ * password=**********
  */
 
-public class AddPrj {
+public class Addprj {
     private final static String BaseJiraMSQ = "https://jira.epam.com/jira/rest/api/latest/project/";
-    private final static String BaseJiraEU = "https://jira.epam.com/jira/rest/api/latest/project/";
-    private final static String BaseJiraPCT = "https://jira.epam.com/jira/rest/api/latest/project/";
+    private final static String BaseJiraEU = "https://jiraeu.epam.com/rest/api/latest/project/";
+    private final static String BaseJiraPCT = "https://jirapct.epam.com/jira/rest/api/latest/project/";
 
     public static void main(String[] args) throws IOException {
 
@@ -40,7 +41,7 @@ public class AddPrj {
         Properties prop = new Properties();
         String filename = "config.properties";
         InputStream input = null;
-        input = AddPrj.class.getClassLoader().getResourceAsStream(filename);
+        input = Addprj.class.getClassLoader().getResourceAsStream(filename);
         if (input == null) {
             try {
                 throw new FileNotFoundException();
@@ -128,14 +129,14 @@ public class AddPrj {
             //adds special user. Uncomment if required.
             //
             //if (countAddedGroups == 6) {
-                //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"], \"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
-                //out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
-                //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"]}}");
+            //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"], \"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            //out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"]}}");
             //}
-           // else {
-                out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            // else {
+            out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
 
-           // }
+            // }
             countAddedGroups++;
             out.close();
             httpCon.getInputStream();
