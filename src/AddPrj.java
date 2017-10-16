@@ -15,10 +15,14 @@ import java.util.Scanner;
  *
  * Create config.properties file in the same dir with the following lines:
  * user=bdas_admin
+<<<<<<< HEAD
  * password=
+=======
+ * password=**********
+>>>>>>> yo
  */
 
-public class AddPrj {
+public class Addprj {
     private final static String BaseJiraMSQ = "https://jira.epam.com/jira/rest/api/latest/project/";
     private final static String BaseJiraEU = "https://jira.epam.com/jira/rest/api/latest/project/";
     private final static String BaseJiraPCT = "https://jira.epam.com/jira/rest/api/latest/project/";
@@ -40,7 +44,7 @@ public class AddPrj {
         Properties prop = new Properties();
         String filename = "config.properties";
         InputStream input = null;
-        input = AddPrj.class.getClassLoader().getResourceAsStream(filename);
+        input = Addprj.class.getClassLoader().getResourceAsStream(filename);
         if (input == null) {
             try {
                 throw new FileNotFoundException();
