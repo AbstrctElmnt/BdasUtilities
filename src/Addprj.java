@@ -24,8 +24,8 @@ import java.util.Scanner;
 
 public class Addprj {
     private final static String BaseJiraMSQ = "https://jira.epam.com/jira/rest/api/latest/project/";
-    private final static String BaseJiraEU = "https://jira.epam.com/jira/rest/api/latest/project/";
-    private final static String BaseJiraPCT = "https://jira.epam.com/jira/rest/api/latest/project/";
+    private final static String BaseJiraEU = "https://jiraeu.epam.com/rest/api/latest/project/";
+    private final static String BaseJiraPCT = "https://jirapct.epam.com/jira/rest/api/latest/project/";
 
     public static void main(String[] args) throws IOException {
 
@@ -132,14 +132,14 @@ public class Addprj {
             //adds special user. Uncomment if required.
             //
             //if (countAddedGroups == 6) {
-                //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"], \"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
-                //out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
-                //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"]}}");
+            //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"], \"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            //out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            //out.write("{\"categorisedActors\":{\"atlassian-user-role-actor\":[\"jira_pmctj_sync\"]}}");
             //}
-           // else {
-                out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
+            // else {
+            out.write("{\"categorisedActors\":{\"atlassian-group-role-actor\":[\"" + groups.get(countAddedGroups) + "\"]}}");
 
-           // }
+            // }
             countAddedGroups++;
             out.close();
             httpCon.getInputStream();
