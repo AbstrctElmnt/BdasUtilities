@@ -18,7 +18,7 @@ import java.util.Scanner;
  * user=bdas_adminD
  * password=
  * password=**********
- *//
+ */
 
 public class Addprj {
     private final static String BaseJiraMSQ = "https://jira.epam.com/jira/rest/api/latest/project/";
