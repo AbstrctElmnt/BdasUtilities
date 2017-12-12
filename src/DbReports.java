@@ -34,21 +34,14 @@ import java.util.Properties;
  */
 
 public class DbReports {
-    private static String userProd;
-    private static String passwordProd;
-    private static String p1;
-    private static String p2;
-    private static String con;
-    private static String sql;
-    private static String firstStr;
-    private static String reportName;
+    private static String userProd, passwordProd, p1, p2, con, sql, firstStr, reportName;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         p1 = args[0];
         p2 = args[1];
         loadProperties();
-        String pathToTheFile = fileOut(reportName);
-        writeOutput(pathToTheFile, firstStr, runSql(connect(con), sql));
+        String pathToTheFile = fileCreation(reportName);
+        writeData(pathToTheFile, firstStr, runSql(connect(con), sql));
         System.out.println("Done!");
     }
 
@@ -59,8 +52,8 @@ public class DbReports {
         if (input == null) {
             try {
                 throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("Sorry, unable to find " + filename);
+            } catch (IOException e) {
+                System.out.println("Unable to find " + filename);
                 e.printStackTrace();
             }
         }
@@ -69,7 +62,6 @@ public class DbReports {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         userProd = prop.getProperty("userProd");
         passwordProd = prop.getProperty("passwordProd");
 
@@ -166,7 +158,7 @@ public class DbReports {
     }
 
     private static ArrayList<String> runSql(Connection connection, String sql) {
-        Statement statement = null;
+        Statement statement;
         ResultSet result = null;
         try
         {
@@ -177,7 +169,7 @@ public class DbReports {
         {
             e.printStackTrace();
         }
-        String output = null;
+        String output;
         ArrayList<String> list = new ArrayList<>();
         System.out.println("Report creation...");
         try
@@ -196,43 +188,29 @@ public class DbReports {
         return list;
     }
 
-    private static String fileOut(String filename) {
-        Path path = null;
+    private static String fileCreation(String filename) {
+        Path path;
+        File file = null;
         try {
             path = Paths.get(DbReports.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        File file = new File(path.toString(), filename + ".csv");
-        if (!file.exists())
-        {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if (file.exists())
-        {
-            try {
+            file = new File(path.toString(), filename + ".csv");
+            if (file.exists()) {
                 file.delete();
                 file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            } else file.createNewFile();
+
+            } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
         }
         return file.getAbsolutePath();
     }
 
-    static void writeOutput(String path, String firstStr, ArrayList<String> list) {
-
+    private static void writeData(String path, String firstStr, ArrayList<String> list) {
         System.out.println("Writing data...");
         PrintWriter fw = null;
         try {
             fw = new PrintWriter(path, "UTF-8");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException  | FileNotFoundException e) {
             e.printStackTrace();
         }
         fw.print('\ufeff');
