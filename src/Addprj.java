@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
+
 /**
  * Use this script only for newly created projects. Due to the bug in JIRA it was not possible to use api methods for updating roles, only override them.
  *
