@@ -21,9 +21,10 @@ import java.util.Scanner;
  */
 
 public class Addprj {
-    private final static String BaseJiraMSQ = "https://jira.epam.com/jira/rest/api/latest/project/";
-    private final static String BaseJiraEU = "https://jiraeu.epam.com/rest/api/latest/project/";
-    private final static String BaseJiraPCT = "https://jirapct.epam.com/jira/rest/api/latest/project/";
+    private final static String BaseJiraMSQ = "";
+    private final static String BaseJiraEU = "";
+    private final static String BaseJiraPCT = "";
+    private final static String restApiProject = "/rest/api/latest/project/";
 
     public static void main(String[] args) throws IOException {
 
@@ -41,7 +42,7 @@ public class Addprj {
     private static String auth() {
         Properties prop = new Properties();
         String filename = "config.properties";
-        InputStream input = null;
+        InputStream input;
         input = Addprj.class.getClassLoader().getResourceAsStream(filename);
         if (input == null) {
             try {
@@ -66,46 +67,46 @@ public class Addprj {
     }
 
     private static List<String> selectJIRA(String jira, String key) {
-        List<String> urls = new ArrayList<String>();
+        List<String> urls = new ArrayList<>();
         if (jira.equals("MSQ"))
         {
-            urls.add(BaseJiraMSQ+key+"/role/10400");//epam-administrator
-            urls.add(BaseJiraMSQ+key+"/role/10401");//epam-developer
-            urls.add(BaseJiraMSQ+key+"/role/10402");//epam-external-user
-            urls.add(BaseJiraMSQ+key+"/role/10403");//epam-member
-            urls.add(BaseJiraMSQ+key+"/role/10500");//epam-team-leader
-            urls.add(BaseJiraMSQ+key+"/role/10404");//epam-tester
-            urls.add(BaseJiraMSQ+key+"/role/10405");//epam-user
-            System.out.println("Check: "+BaseJiraMSQ+key+"/roles");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10400");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10401");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10402");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10403");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10500");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10404");
+            urls.add(BaseJiraMSQ+restApiProject+key+"/role/10405");
+            System.out.println("Check: "+BaseJiraMSQ+"/plugins/servlet/project-config/"+key+"/roles");
         }
         else if (jira.equals("EU"))
         {
-            urls.add(BaseJiraEU+key+"/role/10400");
-            urls.add(BaseJiraEU+key+"/role/10401");
-            urls.add(BaseJiraEU+key+"/role/10402");
-            urls.add(BaseJiraEU+key+"/role/10403");
-            urls.add(BaseJiraEU+key+"/role/10500");
-            urls.add(BaseJiraEU+key+"/role/10404");
-            urls.add(BaseJiraEU+key+"/role/10405");
-            System.out.println("Check: "+BaseJiraEU+key+"/roles");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10400");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10401");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10402");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10403");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10500");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10404");
+            urls.add(BaseJiraEU+restApiProject+key+"/role/10405");
+            System.out.println("Check: "+BaseJiraEU+"/plugins/servlet/project-config/"+key+"/roles");
         }
 
         else if (jira.equals("PCT")) {
-            urls.add(BaseJiraPCT+key+"/role/10400");
-            urls.add(BaseJiraPCT+key+"/role/10401");
-            urls.add(BaseJiraPCT+key+"/role/10402");
-            urls.add(BaseJiraPCT+key+"/role/10403");
-            urls.add(BaseJiraPCT+key+"/role/10500");
-            urls.add(BaseJiraPCT+key+"/role/10404");
-            urls.add(BaseJiraPCT+key+"/role/10405");
-            System.out.println("Check: "+BaseJiraPCT+key+"/roles");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10400");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10401");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10402");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10403");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10500");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10404");
+            urls.add(BaseJiraPCT+restApiProject+key+"/role/10405");
+            System.out.println("Check: "+BaseJiraPCT+"/plugins/servlet/project-config/"+key+"/roles");
         }
 
         return urls;
     }
 
     private static List<String> selectPrj(String projectCode){
-        List<String> groups = new ArrayList<String>();
+        List<String> groups = new ArrayList<>();
         groups.add("prj_"+projectCode+"-administrators");
         groups.add("prj_"+projectCode+"-developers");
         groups.add("prj_"+projectCode+"-external-users");
