@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Use this script only for newly created projects. Due to the bug in JIRA it was not possible to use api methods for updating roles, only override them.
  *
  * Create config.properties file in the same dir with the following lines:
- * user=bdas_adminD
+ * user=bdas_admin
  * password=
  * password=**********
  */
