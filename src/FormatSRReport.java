@@ -112,7 +112,6 @@ public class FormatSRReport {
 
         for (String s : list) {
             fw.print(s);
-            System.out.println(s);
             fw.print("\n");
         }
         fw.close();
